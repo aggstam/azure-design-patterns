@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "dcRWUFK+9buPwH9IegPIMQh1BTYLRsOi0a2+ZF1PV3n4x2nk1xp7wfzrZOJvi5YdUJvrWGd/71DyvEL4hp0rlQ==",
+  "dgSpecHash": "KUEhTwKK8HzyejTlOL9jbJ0i8VHhV5ODSk1AnMycosEWu4Pw8XuSX54egxS/BY2gzRbD7kiil2f+XA5fZTAwcg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\angel\\Downloads\\design_patterns\\ergasia\\BackEnd\\BackEnd\\BackEnd.csproj",
+  "projectFilePath": "C:\\Users\\angel\\Downloads\\design_patterns\\ergasia\\azure-design-patterns\\BackEnd\\BackEnd\\BackEnd.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\angel\\.nuget\\packages\\azure.core\\1.0.2\\azure.core.1.0.2.nupkg.sha512",
     "C:\\Users\\angel\\.nuget\\packages\\azure.identity\\1.0.0\\azure.identity.1.0.0.nupkg.sha512",

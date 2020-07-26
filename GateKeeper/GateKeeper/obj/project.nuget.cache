@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "VzGG6ttiaMCzPedJO2nMMEIcHhfbEs6as1hZibJXjGDnWIMEguS5OOH3m8sebMfObgoiKlNFUYXaBCQMTvrk4g==",
+  "dgSpecHash": "rPIY6/Kh7DOtkTl4LfTj8N1hChYwZiphNNyUIt141jqHCQNTPckpk5b+3fSv6npKSYIor5K+yWiDWK3uux4WFw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\angel\\Downloads\\design_patterns\\ergasia\\GateKeeper\\GateKeeper\\GateKeeper.csproj",
+  "projectFilePath": "C:\\Users\\angel\\Downloads\\design_patterns\\ergasia\\azure-design-patterns\\GateKeeper\\GateKeeper\\GateKeeper.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\angel\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\3.1.2\\microsoft.aspnetcore.app.ref.3.1.2.nupkg.sha512"
   ],

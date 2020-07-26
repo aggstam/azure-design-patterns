@@ -14,11 +14,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\angel\\Downloads\\design_patterns\\ergasia\\GateKeeper\\GateKeeper\\GateKeeper.csproj",
+      "projectUniqueName": "C:\\Users\\angel\\Downloads\\design_patterns\\ergasia\\azure-design-patterns\\GateKeeper\\GateKeeper\\GateKeeper.csproj",
       "projectName": "GateKeeper",
-      "projectPath": "C:\\Users\\angel\\Downloads\\design_patterns\\ergasia\\GateKeeper\\GateKeeper\\GateKeeper.csproj",
+      "projectPath": "C:\\Users\\angel\\Downloads\\design_patterns\\ergasia\\azure-design-patterns\\GateKeeper\\GateKeeper\\GateKeeper.csproj",
       "packagesPath": "C:\\Users\\angel\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\angel\\Downloads\\design_patterns\\ergasia\\GateKeeper\\GateKeeper\\obj\\",
+      "outputPath": "C:\\Users\\angel\\Downloads\\design_patterns\\ergasia\\azure-design-patterns\\GateKeeper\\GateKeeper\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "c:\\program files\\dotnet\\sdk\\NuGetFallbackFolder"

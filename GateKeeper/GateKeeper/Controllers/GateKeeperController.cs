@@ -142,7 +142,6 @@ namespace GateKeeper.Controllers
         {
             try
             {
-                // validate lifeTime
                 string lifeTime = Request.Query["lifeTime"];
                 string validationError = _validationService.ValidateValetKeyLifeTime(lifeTime);
                 if (validationError != null) { 

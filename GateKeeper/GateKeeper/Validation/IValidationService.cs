@@ -47,7 +47,7 @@ namespace GateKeeper.Validation
             List<string> validationErrors = new List<string>(); 
             if (username == null || username.Trim().Length == 0 || password == null || password.Trim().Length == 0)
             {
-                validationErrors.Add("Username or password cannot be empty");
+                validationErrors.Add("Username or password cannot be empty.");
                 return validationErrors;
             }
             if (!_usernamePattern.IsMatch(username)) { validationErrors.Add(string.Format("Username must follow the pattern: {0}", _usernamePattern)); }

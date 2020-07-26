@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\angel\\Downloads\\design_patterns\\ergasia\\BackEnd\\BackEnd\\BackEnd.csproj": {}
+    "C:\\Users\\angel\\Downloads\\design_patterns\\ergasia\\azure-design-patterns\\BackEnd\\BackEnd\\BackEnd.csproj": {}
   },
   "projects": {
-    "C:\\Users\\angel\\Downloads\\design_patterns\\ergasia\\BackEnd\\BackEnd\\BackEnd.csproj": {
+    "C:\\Users\\angel\\Downloads\\design_patterns\\ergasia\\azure-design-patterns\\BackEnd\\BackEnd\\BackEnd.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\angel\\Downloads\\design_patterns\\ergasia\\BackEnd\\BackEnd\\BackEnd.csproj",
+        "projectUniqueName": "C:\\Users\\angel\\Downloads\\design_patterns\\ergasia\\azure-design-patterns\\BackEnd\\BackEnd\\BackEnd.csproj",
         "projectName": "BackEnd",
-        "projectPath": "C:\\Users\\angel\\Downloads\\design_patterns\\ergasia\\BackEnd\\BackEnd\\BackEnd.csproj",
+        "projectPath": "C:\\Users\\angel\\Downloads\\design_patterns\\ergasia\\azure-design-patterns\\BackEnd\\BackEnd\\BackEnd.csproj",
         "packagesPath": "C:\\Users\\angel\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\angel\\Downloads\\design_patterns\\ergasia\\BackEnd\\BackEnd\\obj\\",
+        "outputPath": "C:\\Users\\angel\\Downloads\\design_patterns\\ergasia\\azure-design-patterns\\BackEnd\\BackEnd\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "c:\\program files\\dotnet\\sdk\\NuGetFallbackFolder"

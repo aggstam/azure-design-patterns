@@ -1,0 +1,347 @@
+GateKeeper Services
+
+1. 
+Service: Login
+URL: https://localhost:44373/gatekeeper/login
+HTTPType: POST
+Request:
+		{
+			"username" : "stavros",
+			"password" : "stavros"
+		} 
+Responses:
+	1. 200-success:{
+						"id": "5f156b7e1188af1bda81c2bf",
+						"firstName": "Stavros",
+						"lastName": "Laios",
+						"email": "stavros@gmail.com",
+						"username": "stavros",
+						"password": null
+					}
+	2. 200-exception: exception message
+	3. 400-bad request: Username or password is incorrect
+
+2. 
+Service: SignUp
+URL: https://localhost:44373/gatekeeper/signup
+HTTPType: POST
+Request:
+		{
+			"firstName": "Stavros",
+			"lastName": "Laios",
+			"email": "stavros@gmail.com",
+			"username": "stavros",
+			"password": "stavros"
+		} 
+Responses:
+	1. 200-success:{
+						"id": "5f156b7e1188af1bda81c2bf",
+						"firstName": "Stavros",
+						"lastName": "Laios",
+						"email": "stavros@gmail.com",
+						"username": "stavros",
+						"password": null
+					}
+	2. 200-exception: exception message
+	3. 400-bad request: User already exists.
+
+3. 
+Service: GetAllUserFilesInformation
+URL: https://localhost:44373/gatekeeper/files
+HTTPType: GET
+Request: - 
+Responses:
+	1. 200-success:[
+						{
+							"fileName": "localFolder/aggelos/13231178_10206017175857943_230801434_n.jpg",
+							"fileUrl": "https://localhost:44373/gatekeeper/files/aggelos/13231178_10206017175857943_230801434_n.jpg?sv=2019-07-07&st=2020-07-20T20%3A00%3A31Z&se=2020-07-20T20%3A10%3A31Z&sr=b&sp=r&sig=Pnrajw8WpTMHy2W%2BCRG2YWK4wR5vK0DvK9RyXggYbiI%3D"
+						},
+						{
+							"fileName": "localFolder/aggelos/15578791_1689224584455306_4700597824734174303_n.jpg",
+							"fileUrl": "https://localhost:44373/gatekeeper/files/aggelos/15578791_1689224584455306_4700597824734174303_n.jpg?sv=2019-07-07&st=2020-07-20T20%3A00%3A31Z&se=2020-07-20T20%3A10%3A31Z&sr=b&sp=r&sig=peMlFbIvU%2B7yy%2FCOg24dg4N3CF976qKjzsmXUNNULiw%3D"
+						},
+						{
+							"fileName": "localFolder/aggelos/YX4fJzc.jpg",
+							"fileUrl": "https://localhost:44373/gatekeeper/files/aggelos/YX4fJzc.jpg?sv=2019-07-07&st=2020-07-20T20%3A00%3A31Z&se=2020-07-20T20%3A10%3A31Z&sr=b&sp=r&sig=4J4g5wvCT0RRBOMV5hi6PB6GGz3QMJvYv879b9FFydI%3D"
+						},
+						{
+							"fileName": "localFolder/giorgos/10906236_764601333617976_2823808280439036006_n.jpg",
+							"fileUrl": "https://localhost:44373/gatekeeper/files/giorgos/10906236_764601333617976_2823808280439036006_n.jpg?sv=2019-07-07&st=2020-07-20T20%3A00%3A31Z&se=2020-07-20T20%3A10%3A31Z&sr=b&sp=r&sig=qQv41xaWCIXJ%2Bi%2BFqqcJpCdVdsSW5yKlJfGV%2FbugCe0%3D"
+						},
+						{
+							"fileName": "localFolder/giorgos/1888524_10201727702937939_685442196_n.jpg",
+							"fileUrl": "https://localhost:44373/gatekeeper/files/giorgos/1888524_10201727702937939_685442196_n.jpg?sv=2019-07-07&st=2020-07-20T20%3A00%3A31Z&se=2020-07-20T20%3A10%3A31Z&sr=b&sp=r&sig=qOSNn1PAVmLXwqBXf2cxczgodMvvuGzL3tjVNdXJ6HU%3D"
+						},
+						{
+							"fileName": "localFolder/giorgos/82864630_10215841388931268_4458698596149100544_o.jpg",
+							"fileUrl": "https://localhost:44373/gatekeeper/files/giorgos/82864630_10215841388931268_4458698596149100544_o.jpg?sv=2019-07-07&st=2020-07-20T20%3A00%3A31Z&se=2020-07-20T20%3A10%3A31Z&sr=b&sp=r&sig=qguBnptU2oJjne9%2FNDY8xEq1B1yQ1xGRmJoB2PL0AJU%3D"
+						},
+						{
+							"fileName": "localFolder/stavros/14731173_1311584535520702_2665196383481344443_n.jpg",
+							"fileUrl": "https://localhost:44373/gatekeeper/files/stavros/14731173_1311584535520702_2665196383481344443_n.jpg?sv=2019-07-07&st=2020-07-20T20%3A00%3A31Z&se=2020-07-20T20%3A10%3A31Z&sr=b&sp=r&sig=XBXj9jHG1Yzvo%2FnGn6IbewtC3Ow8hRh7ozIBtYCy2xo%3D"
+						},
+						{
+							"fileName": "localFolder/stavros/35882417_1961473000531849_8869071882435952640_n.jpg",
+							"fileUrl": "https://localhost:44373/gatekeeper/files/stavros/35882417_1961473000531849_8869071882435952640_n.jpg?sv=2019-07-07&st=2020-07-20T20%3A00%3A31Z&se=2020-07-20T20%3A10%3A31Z&sr=b&sp=r&sig=9zHwQ9izkfGL4te6p5RfdqTpajRn6EcvrY6NkxE90Ao%3D"
+						},
+						{
+							"fileName": "localFolder/stavros/94042446_3178486675497136_9093346111036325888_o.jpg",
+							"fileUrl": "https://localhost:44373/gatekeeper/files/stavros/94042446_3178486675497136_9093346111036325888_o.jpg?sv=2019-07-07&st=2020-07-20T20%3A00%3A31Z&se=2020-07-20T20%3A10%3A31Z&sr=b&sp=r&sig=9MG5S8hv77qEIvPY823%2FUiwu5Y8Unx9NXpyfqErFUSw%3D"
+						}
+					]
+	2. 204-no content: []
+
+4.
+Service: GetUserFilesInformation
+URL: https://localhost:44373/gatekeeper/files/{username}
+HTTPType: GET
+Request: - 
+Responses:
+	1. 200-success:[
+						{
+							"fileName": "localFolder/aggelos/13231178_10206017175857943_230801434_n.jpg",
+							"fileUrl": "https://localhost:44373/gatekeeper/files/aggelos/13231178_10206017175857943_230801434_n.jpg?sv=2019-07-07&st=2020-07-20T20%3A01%3A06Z&se=2020-07-20T20%3A11%3A06Z&sr=b&sp=r&sig=6Mv3FJ7LvseDyzVCSVmBnUNiMD%2Fnm0QQDMuyOTPSEAw%3D"
+						},
+						{
+							"fileName": "localFolder/aggelos/15578791_1689224584455306_4700597824734174303_n.jpg",
+							"fileUrl": "https://localhost:44373/gatekeeper/files/aggelos/15578791_1689224584455306_4700597824734174303_n.jpg?sv=2019-07-07&st=2020-07-20T20%3A01%3A06Z&se=2020-07-20T20%3A11%3A06Z&sr=b&sp=r&sig=DWKmFEMrUOZT55jXtbLFq4IYVQB2wKccoKIYTA6nBE0%3D"
+						},
+						{
+							"fileName": "localFolder/aggelos/YX4fJzc.jpg",
+							"fileUrl": "https://localhost:44373/gatekeeper/files/aggelos/YX4fJzc.jpg?sv=2019-07-07&st=2020-07-20T20%3A01%3A06Z&se=2020-07-20T20%3A11%3A06Z&sr=b&sp=r&sig=ZqQ7yJtCQtY5VzkfG%2BZy42J4Bcw4vpyjx65%2FTXn7fPw%3D"
+						}
+					]
+	2. 204-no content: []
+
+5.
+Service: DownloadFile
+URL: https://localhost:44373/gatekeeper/files/{username}/{filename}?{valetKeyParams}
+HTTPType: GET
+Request: - 
+Responses:
+	1. 200-success: file blob
+	2. 404-not found: {filename}
+	
+6.
+Service: RefreshUserFileValetKey
+URL: https://localhost:44373/gatekeeper/files/refreshValetKey/{username}/{filename}
+HTTPType: GET
+Request: - 
+Responses:
+	1. 200-success: {
+						"fileName": "localFolder/aggelos/13231178_10206017175857943_230801434_n.jpg",
+						"fileUrl": "https://localhost:44373/gatekeeper/files/aggelos/13231178_10206017175857943_230801434_n.jpg?sv=2019-07-07&st=2020-07-20T20%3A01%3A06Z&se=2020-07-20T20%3A11%3A06Z&sr=b&sp=r&sig=6Mv3FJ7LvseDyzVCSVmBnUNiMD%2Fnm0QQDMuyOTPSEAw%3D"
+					}
+	2. 404-not found: {
+						"fileName": "{filename}",
+						"fileUrl": "404 Not Found"
+					  }
+7.
+Service: DeleteUserFile
+URL: https://localhost:44373/gatekeeper/files/{username}/{filename}
+HTTPType: DELETE
+Request: - 
+Responses:
+	1. 200-success: Backend response code
+	2. 200-exception: exception message
+	
+8.
+Service: PostUserFile
+URL: https://localhost:44373/gatekeeper/files/{username}
+HTTPType: POST
+Request: form-data:{file:{file blob}
+Responses:
+	1. 200-success: Backend response code
+	2. 200-exception: exception message
+	3. 400-bad request: Form did not contained a file.
+	
+BackEnd Services
+
+1. 
+Service: Login
+URL: https://localhost:44308/login
+HTTPType: POST
+Request:
+		{
+			"username" : "stavros",
+			"password" : "stavros"
+		} 
+Responses:
+	1. 200-success:{
+						"id": "5f156b7e1188af1bda81c2bf",
+						"firstName": "Stavros",
+						"lastName": "Laios",
+						"email": "stavros@gmail.com",
+						"username": "stavros",
+						"password": null
+					}
+	2. 400-bad request: Username or password is incorrect
+
+2. 
+Service: SignUp
+URL: https://localhost:44308/signup
+HTTPType: POST
+Request:
+		{
+			"firstName": "Stavros",
+			"lastName": "Laios",
+			"email": "stavros@gmail.com",
+			"username": "stavros",
+			"password": "stavros"
+		} 
+Responses:
+	1. 200-success:{
+						"id": "5f156b7e1188af1bda81c2bf",
+						"firstName": "Stavros",
+						"lastName": "Laios",
+						"email": "stavros@gmail.com",
+						"username": "stavros",
+						"password": null
+					}
+	2. 400-bad request: User already exists.
+	
+3. 
+Service: Authorize
+URL: https://localhost:44308/authorize
+HTTPType: POST
+Request: -
+Responses:
+	1. 200-success:{
+						"id": "5f156b7e1188af1bda81c2bf",
+						"firstName": "Stavros",
+						"lastName": "Laios",
+						"email": "stavros@gmail.com",
+						"username": "stavros",
+						"password": null
+					}
+	2. 400-bad request: Username or password is incorrect.
+
+4. 
+Service: GetAllUserFilesInformation
+URL: https://localhost:44308/files
+HTTPType: GET
+Request: - 
+Responses:
+	1. 200-success:[
+						{
+							"fileName": "localFolder/aggelos/13231178_10206017175857943_230801434_n.jpg",
+							"fileUrl": "https://localhost:44373/gatekeeper/files/aggelos/13231178_10206017175857943_230801434_n.jpg?sv=2019-07-07&st=2020-07-20T20%3A00%3A31Z&se=2020-07-20T20%3A10%3A31Z&sr=b&sp=r&sig=Pnrajw8WpTMHy2W%2BCRG2YWK4wR5vK0DvK9RyXggYbiI%3D"
+						},
+						{
+							"fileName": "localFolder/aggelos/15578791_1689224584455306_4700597824734174303_n.jpg",
+							"fileUrl": "https://localhost:44373/gatekeeper/files/aggelos/15578791_1689224584455306_4700597824734174303_n.jpg?sv=2019-07-07&st=2020-07-20T20%3A00%3A31Z&se=2020-07-20T20%3A10%3A31Z&sr=b&sp=r&sig=peMlFbIvU%2B7yy%2FCOg24dg4N3CF976qKjzsmXUNNULiw%3D"
+						},
+						{
+							"fileName": "localFolder/aggelos/YX4fJzc.jpg",
+							"fileUrl": "https://localhost:44373/gatekeeper/files/aggelos/YX4fJzc.jpg?sv=2019-07-07&st=2020-07-20T20%3A00%3A31Z&se=2020-07-20T20%3A10%3A31Z&sr=b&sp=r&sig=4J4g5wvCT0RRBOMV5hi6PB6GGz3QMJvYv879b9FFydI%3D"
+						},
+						{
+							"fileName": "localFolder/giorgos/10906236_764601333617976_2823808280439036006_n.jpg",
+							"fileUrl": "https://localhost:44373/gatekeeper/files/giorgos/10906236_764601333617976_2823808280439036006_n.jpg?sv=2019-07-07&st=2020-07-20T20%3A00%3A31Z&se=2020-07-20T20%3A10%3A31Z&sr=b&sp=r&sig=qQv41xaWCIXJ%2Bi%2BFqqcJpCdVdsSW5yKlJfGV%2FbugCe0%3D"
+						},
+						{
+							"fileName": "localFolder/giorgos/1888524_10201727702937939_685442196_n.jpg",
+							"fileUrl": "https://localhost:44373/gatekeeper/files/giorgos/1888524_10201727702937939_685442196_n.jpg?sv=2019-07-07&st=2020-07-20T20%3A00%3A31Z&se=2020-07-20T20%3A10%3A31Z&sr=b&sp=r&sig=qOSNn1PAVmLXwqBXf2cxczgodMvvuGzL3tjVNdXJ6HU%3D"
+						},
+						{
+							"fileName": "localFolder/giorgos/82864630_10215841388931268_4458698596149100544_o.jpg",
+							"fileUrl": "https://localhost:44373/gatekeeper/files/giorgos/82864630_10215841388931268_4458698596149100544_o.jpg?sv=2019-07-07&st=2020-07-20T20%3A00%3A31Z&se=2020-07-20T20%3A10%3A31Z&sr=b&sp=r&sig=qguBnptU2oJjne9%2FNDY8xEq1B1yQ1xGRmJoB2PL0AJU%3D"
+						},
+						{
+							"fileName": "localFolder/stavros/14731173_1311584535520702_2665196383481344443_n.jpg",
+							"fileUrl": "https://localhost:44373/gatekeeper/files/stavros/14731173_1311584535520702_2665196383481344443_n.jpg?sv=2019-07-07&st=2020-07-20T20%3A00%3A31Z&se=2020-07-20T20%3A10%3A31Z&sr=b&sp=r&sig=XBXj9jHG1Yzvo%2FnGn6IbewtC3Ow8hRh7ozIBtYCy2xo%3D"
+						},
+						{
+							"fileName": "localFolder/stavros/35882417_1961473000531849_8869071882435952640_n.jpg",
+							"fileUrl": "https://localhost:44373/gatekeeper/files/stavros/35882417_1961473000531849_8869071882435952640_n.jpg?sv=2019-07-07&st=2020-07-20T20%3A00%3A31Z&se=2020-07-20T20%3A10%3A31Z&sr=b&sp=r&sig=9zHwQ9izkfGL4te6p5RfdqTpajRn6EcvrY6NkxE90Ao%3D"
+						},
+						{
+							"fileName": "localFolder/stavros/94042446_3178486675497136_9093346111036325888_o.jpg",
+							"fileUrl": "https://localhost:44373/gatekeeper/files/stavros/94042446_3178486675497136_9093346111036325888_o.jpg?sv=2019-07-07&st=2020-07-20T20%3A00%3A31Z&se=2020-07-20T20%3A10%3A31Z&sr=b&sp=r&sig=9MG5S8hv77qEIvPY823%2FUiwu5Y8Unx9NXpyfqErFUSw%3D"
+						}
+					]
+	2. 204-no content: []
+
+5.
+Service: GetUserFilesInformation
+URL: https://localhost:44308/files/{username}
+HTTPType: GET
+Request: - 
+Responses:
+	1. 200-success:[
+						{
+							"fileName": "localFolder/aggelos/13231178_10206017175857943_230801434_n.jpg",
+							"fileUrl": "https://localhost:44373/gatekeeper/files/aggelos/13231178_10206017175857943_230801434_n.jpg?sv=2019-07-07&st=2020-07-20T20%3A01%3A06Z&se=2020-07-20T20%3A11%3A06Z&sr=b&sp=r&sig=6Mv3FJ7LvseDyzVCSVmBnUNiMD%2Fnm0QQDMuyOTPSEAw%3D"
+						},
+						{
+							"fileName": "localFolder/aggelos/15578791_1689224584455306_4700597824734174303_n.jpg",
+							"fileUrl": "https://localhost:44373/gatekeeper/files/aggelos/15578791_1689224584455306_4700597824734174303_n.jpg?sv=2019-07-07&st=2020-07-20T20%3A01%3A06Z&se=2020-07-20T20%3A11%3A06Z&sr=b&sp=r&sig=DWKmFEMrUOZT55jXtbLFq4IYVQB2wKccoKIYTA6nBE0%3D"
+						},
+						{
+							"fileName": "localFolder/aggelos/YX4fJzc.jpg",
+							"fileUrl": "https://localhost:44373/gatekeeper/files/aggelos/YX4fJzc.jpg?sv=2019-07-07&st=2020-07-20T20%3A01%3A06Z&se=2020-07-20T20%3A11%3A06Z&sr=b&sp=r&sig=ZqQ7yJtCQtY5VzkfG%2BZy42J4Bcw4vpyjx65%2FTXn7fPw%3D"
+						}
+					]
+	2. 204-no content: []
+
+6.
+Service: DownloadFile
+URL: https://localhost:44308/files/{username}/{filename}?{valetKeyParams}
+HTTPType: GET
+Request: - 
+Responses:
+	1. 200-success: file blob
+	2. 404-not found: {filename}
+	
+7.
+Service: RefreshUserFileValetKey
+URL: https://localhost:44308/files/refreshValetKey/{username}/{filename}
+HTTPType: GET
+Request: - 
+Responses:
+	1. 200-success: {
+						"fileName": "localFolder/aggelos/13231178_10206017175857943_230801434_n.jpg",
+						"fileUrl": "https://localhost:44373/gatekeeper/files/aggelos/13231178_10206017175857943_230801434_n.jpg?sv=2019-07-07&st=2020-07-20T20%3A01%3A06Z&se=2020-07-20T20%3A11%3A06Z&sr=b&sp=r&sig=6Mv3FJ7LvseDyzVCSVmBnUNiMD%2Fnm0QQDMuyOTPSEAw%3D"
+					}
+	2. 404-not found: {
+						"fileName": "{filename}",
+						"fileUrl": "404 Not Found"
+					  }
+8.
+Service: DeleteUserFile
+URL: https://localhost:44308/files/{username}/{filename}
+HTTPType: DELETE
+Request: - 
+Responses:
+	1. 200-success: Backend response code
+	2. 404-not found: {filename}
+	
+9.
+Service: PostUserFile
+URL: https://localhost:44308/files/{username}
+HTTPType: POST
+Request: form-data:{file:{file blob}
+Responses:
+	1. 200-success: {filename}
+	3. 400-bad request: Form did not contained a file.
+
+Notes:
+Local GateKeeper url: https://localhost:44373/gatekeeper/
+Local BackEnd url: https://localhost:44373/gatekeeper/
+Both GateKeeper and BackEnd use HTTPS.
+GateKeeper endpoints are public, while BackEnd are accessible only in local network.
+Base Authentication is used for User Authentication and communication between the two hosts.
+For Gatekeeper services that allow anonymous calls(like Login or downloadFile), GateKeeper uses his own authentication key while calling BackEnd.
+All BackEnd calls require authentication.
+When a Gatekeeper service is requested:
+	1. An authorization call to BackEnd is executed in order to verify user.
+	2. If user is authorized, service is executed.
+MongoDB is used to store Users information.
+Azure local storage is used for content hosting.
+Valet Keys(5 min life time) are used in order to retrieve content from Azure local storage.
+
+
+db.Users.insertMany([{'FirstName':'','LastName':'','Email':'','Username':'gatekeeper','Password':'gatekeeper'},
+                     {'FirstName':'Aggelos','LastName':'Stamatiou','Email':'aggelos@gmail.com','Username':'aggelos','Password':'aggelos'},
+					 {'FirstName':'Giorgos','LastName':'Weider','Email':'giorgos@gmail.com','Username':'giorgos','Password':'giorgos'},
+					 {'FirstName':'Stavros','LastName':'Laios','Email':'stavros@gmail.com','Username':'stavros','Password':'stavros'}])

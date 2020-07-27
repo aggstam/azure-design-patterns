@@ -91,11 +91,11 @@ namespace GateKeeper.Controllers
 
         [Authorize]
         [HttpGet("files/{username}")]
-        public IEnumerable<FileInfo> GetUserFilesInfo([FromRoute] string username)
+        public IActionResult GetUserFilesInfo([FromRoute] string username)
         {
-            List<FileInfo> userFilesInfo = new List<FileInfo>();
             try
             {
+                if (!_validationService.ValidateCaller(Request.Headers["Authorization"], username)) return Unauthorized();
                 string filesUrl = string.Format("{0}/{1}", _filesUrl, username);
                 HttpStatusCode responseStatusCode;
                 string responseBody = "";
@@ -105,49 +105,26 @@ namespace GateKeeper.Controllers
                     responseStatusCode = message.Result.StatusCode;
                     responseBody = message.Result.Content.ReadAsStringAsync().Result;
                 }
-                if (responseStatusCode.Equals(HttpStatusCode.OK)) { userFilesInfo = JsonSerializer.Deserialize<List<FileInfo>>(responseBody, _jsonSerializerOptions); }               
+                if (responseStatusCode.Equals(HttpStatusCode.OK)) { return Ok(JsonSerializer.Deserialize<List<FileInfo>>(responseBody, _jsonSerializerOptions)); }
+                return Ok(responseStatusCode);
             }
             catch (Exception ex)
             {
                 _logger.LogInformation("[GateKeeperController/GetUserFilesInfo] Exception occured. Message: {0}", ex.Message);
+                return Ok(ex.Message);
             }
-            return userFilesInfo;
-        }
-
-        [AllowAnonymous]
-        [HttpGet("files/{username}/{fileName}/{valetKey}")]
-        public IActionResult DownLoadFile([FromRoute] string username, string fileName, string valetKey)
-        {           
-            try
-            {
-                string backendUrl = string.Format("{0}/{1}/{2}/{3}", _filesUrl, username, fileName, valetKey);
-                byte[] responseBytes = null;
-                using (var client = new HttpClient())
-                {
-                    using var message = client.GetByteArrayAsync(backendUrl);
-                    responseBytes = message.Result;
-                }
-                if (responseBytes != null) { return File(responseBytes, MimeMapping.GetMimeMapping(fileName)); }
-            }
-            catch (Exception ex)
-            {
-                _logger.LogInformation("[GateKeeperController/DownLoadFile] Exception occured. Message: {0}", ex.Message);
-            }
-            return NotFound(fileName);
         }
 
         [Authorize]
         [HttpGet("files/refreshValetKey/{username}/{fileName}")]
-        public FileInfo RefreshUserFileValetKey([FromRoute] string username, string fileName)
+        public IActionResult RefreshUserFileValetKey([FromRoute] string username, string fileName)
         {
             try
             {
+                if (!_validationService.ValidateCaller(Request.Headers["Authorization"], username)) return Unauthorized();
                 string lifeTime = Request.Query["lifeTime"];
                 string validationError = _validationService.ValidateValetKeyLifeTime(lifeTime);
-                if (validationError != null) { 
-                    Response.StatusCode = (int)HttpStatusCode.BadRequest;
-                    return new FileInfo { FileName = fileName, FileUrl = validationError };
-                }
+                if (validationError != null) { return BadRequest(); }
                 string refreshValetKeyUrl = string.Format("{0}/{1}/{2}?lifeTime={3}", _refreshValetKeyUrl, username, fileName, lifeTime);
                 HttpStatusCode responseStatusCode;
                 string responseBody = "";
@@ -157,14 +134,14 @@ namespace GateKeeper.Controllers
                     responseStatusCode = message.Result.StatusCode;
                     responseBody = message.Result.Content.ReadAsStringAsync().Result;
                 }
-                if (responseStatusCode.Equals(HttpStatusCode.OK)) { return JsonSerializer.Deserialize<FileInfo>(responseBody, _jsonSerializerOptions); }
+                if (responseStatusCode.Equals(HttpStatusCode.OK)) { return Ok(JsonSerializer.Deserialize<FileInfo>(responseBody, _jsonSerializerOptions)); }
+                return Ok(responseStatusCode);
             }
             catch (Exception ex)
             {
                 _logger.LogInformation("[GateKeeperController/RefreshUserFileValetKey] Exception occured. Message: {0}", ex.Message);
-            }
-            Response.StatusCode = (int)HttpStatusCode.NotFound;
-            return new FileInfo { FileName = fileName, FileUrl = "404 Not Found." };
+                return Ok(ex.Message);
+            }            
         }
 
         [Authorize]

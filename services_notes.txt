@@ -18,7 +18,7 @@ Responses:
 						"username": "stavros",
 						"password": null
 					}
-	2. 200-exception: exception message
+	2. 200-success: exception message
 	3. 400-bad request: The Username field is required.
 	4. 400-bad request: The Password field is required.
 	5. 400-bad request: [
@@ -50,7 +50,7 @@ Responses:
 						"username": "stavros",
 						"password": null
 					}
-	2. 200-exception: exception message
+	2. 200-success: exception message
 	3. 400-bad request: Username or password cannot be empty.
 	4. 400-bad request: [
 							"Username must follow the pattern: ^[a-z0-9]+$",
@@ -68,69 +68,57 @@ Request: -
 Responses:
 	1. 200-success:[
 						{
-							"fileName": "localFolder/aggelos/13231178_10206017175857943_230801434_n.jpg",
-							"fileUrl": "https://localhost:44373/gatekeeper/files/aggelos/13231178_10206017175857943_230801434_n.jpg/c3Y9MjAxOS0wNy0wNyZzdD0yMDIwLTA3LTI2VDE3JTNBMTUlM0E0MVomc2U9MjAyMC0wNy0yNlQxNyUzQTI1JTNBNDFaJnNyPWImc3A9ciZzaWc9VU5qREdsQ0tGdXVQWVFhWU8zV05oOU9SVnpWbSUyQkNGTWl1S3N6T1Z5aWxRJTNE"
+							"fileName": "13231178_10206017175857943_230801434_n.jpg",
+							"fileUrl": "http://localhost:10000/devstoreaccount1/static-content/localFolder/aggelos/13231178_10206017175857943_230801434_n.jpg?sv=2019-07-07&st=2020-07-27T08%3A17%3A48Z&se=2020-07-27T08%3A27%3A48Z&sr=b&sp=r&sig=v3zd5u8aj7eSISNLdLRVcc4EDejCewrgLHPnA13CiOU%3D"
 						},
 						{
-							"fileName": "localFolder/aggelos/15578791_1689224584455306_4700597824734174303_n.jpg",
-							"fileUrl": "https://localhost:44373/gatekeeper/files/aggelos/15578791_1689224584455306_4700597824734174303_n.jpg/c3Y9MjAxOS0wNy0wNyZzdD0yMDIwLTA3LTI2VDE3JTNBMTUlM0E0MVomc2U9MjAyMC0wNy0yNlQxNyUzQTI1JTNBNDFaJnNyPWImc3A9ciZzaWc9U2pSODU3SGlCanJwMlVWVU9WQ3hHb1QlMkZCcjcwM0M5dGlBOGpxdlBTbjBVJTNE"
+							"fileName": "15578791_1689224584455306_4700597824734174303_n.jpg",
+							"fileUrl": "http://localhost:10000/devstoreaccount1/static-content/localFolder/aggelos/15578791_1689224584455306_4700597824734174303_n.jpg?sv=2019-07-07&st=2020-07-27T08%3A17%3A48Z&se=2020-07-27T08%3A27%3A48Z&sr=b&sp=r&sig=LXcZHOS0IRZH5%2FGJ7wZOBHcJxZGOVph4rnM3dE%2FAjU0%3D"
 						},
 						{
-							"fileName": "localFolder/aggelos/YX4fJzc.jpg",
-							"fileUrl": "https://localhost:44373/gatekeeper/files/aggelos/YX4fJzc.jpg/c3Y9MjAxOS0wNy0wNyZzdD0yMDIwLTA3LTI2VDE3JTNBMTUlM0E0MVomc2U9MjAyMC0wNy0yNlQxNyUzQTI1JTNBNDFaJnNyPWImc3A9ciZzaWc9JTJCWGV4R21uZFFYJTJCUEZHcU1KZWlwMFFzJTJGZyUyQlE2MEpLMnpZczZkcklzeERFJTNE"
+							"fileName": "YX4fJzc.jpg",
+							"fileUrl": "http://localhost:10000/devstoreaccount1/static-content/localFolder/aggelos/YX4fJzc.jpg?sv=2019-07-07&st=2020-07-27T08%3A17%3A48Z&se=2020-07-27T08%3A27%3A48Z&sr=b&sp=r&sig=fzSHTa4YO%2ByrZxxrdaZ6pSkMYpqEVdB7yQE0Rz%2Fe45Q%3D"
 						}
 					]
-	2. 204-no content: []
-
-4.
-Service: DownloadFile
-URL: https://localhost:44373/gatekeeper/files/{username}/{filename}/{valetKey}
-HTTPType: GET
-Request: - 
-Responses:
-	1. 200-success: file blob
-	2. 404-not found: {filename}
+	2. 200-success: 204(no content)
+	3. 200-success: Backend response code
+	4. 200-success: exception message
+	5. 401 Unauthorized: when {username} in url doesn't match Authorization Header username
 	
-5.
+4.
 Service: RefreshUserFileValetKey
 URL: https://localhost:44373/gatekeeper/files/refreshValetKey/{username}/{filename}?lifeTime={seconds}
 HTTPType: GET
 Request: - 
 Responses:
 	1. 200-success: {
-						"fileName": "localFolder/aggelos/13231178_10206017175857943_230801434_n.jpg",
-						"fileUrl": "https://localhost:44373/gatekeeper/files/aggelos/13231178_10206017175857943_230801434_n.jpg/c3Y9MjAxOS0wNy0wNyZzdD0yMDIwLTA3LTI2VDE3JTNBMTclM0EzNVomc2U9MjAyMC0wNy0yNlQxNyUzQTI3JTNBMzVaJnNyPWImc3A9ciZzaWc9ZkkxdG5iQ2Y5bEpTTWxlVHM5V05BZlozNmVwUlpxdmJ2VGtxcE92c0FvcyUzRA=="
+						"fileName": "13231178_10206017175857943_230801434_n.jpg",
+						"fileUrl": "http://localhost:10000/devstoreaccount1/static-content/localFolder/aggelos/13231178_10206017175857943_230801434_n.jpg?sv=2019-07-07&st=2020-07-27T08%3A24%3A49Z&se=2020-07-27T08%3A34%3A49Z&sr=b&sp=r&sig=StBbrmbeJIuXfrYj%2FdH60RgnVvyUWibdHRRG%2BGPE1lw%3D"
 					}
-	2. 400-bad request: {
-							"fileName": "{filename}",
-							"fileUrl": "Valet Key life time must be a positive number."
-						}
-	3. 400-bad request: {
-							"fileName": "{filename}",
-							"fileUrl": "Valet Key life time exceeds limit. Max life time: {maxLifeTimeValue}"
-						}
-	4. 404-not found: {
-						"fileName": "{filename}",
-						"fileUrl": "404 Not Found"
-					  }
-6.
+	2. 200-success: Backend response code
+	3. 200-success: exception message
+	4. 400-bad request: Valet Key life time must be a positive number.
+	5. 400-bad request: Valet Key life time exceeds limit. Max life time: {valetKeyMaxLifeTime}
+	6. 401 Unauthorized: when {username} in url doesn't match Authorization Header username
+	
+5.
 Service: DeleteUserFile
 URL: https://localhost:44373/gatekeeper/files/{username}/{filename}
 HTTPType: DELETE
 Request: - 
 Responses:
 	1. 200-success: Backend response code
-	2. 200-exception: exception message
+	2. 200-success: exception message
 	3. 401 Unauthorized: when {username} in url doesn't match Authorization Header username
 	
-7.
+6.
 Service: PostUserFile
 URL: https://localhost:44373/gatekeeper/files/{username}
 HTTPType: POST
 Request: form-data:{file:{file blob}
 Responses:
 	1. 200-success: Backend response code
-	2. 200-exception: exception message
+	2. 200-success: exception message
 	3. 400-bad request: Form did not contained a file.
 	4. 400-bad request: File is not an image.
 	5. 400-bad request: File does not have an extension.
@@ -207,44 +195,32 @@ Request: -
 Responses:
 	1. 200-success:[
 						{
-							"fileName": "localFolder/aggelos/13231178_10206017175857943_230801434_n.jpg",
-							"fileUrl": "https://localhost:44373/gatekeeper/files/aggelos/13231178_10206017175857943_230801434_n.jpg/c3Y9MjAxOS0wNy0wNyZzdD0yMDIwLTA3LTI2VDE3JTNBMTUlM0E0MVomc2U9MjAyMC0wNy0yNlQxNyUzQTI1JTNBNDFaJnNyPWImc3A9ciZzaWc9VU5qREdsQ0tGdXVQWVFhWU8zV05oOU9SVnpWbSUyQkNGTWl1S3N6T1Z5aWxRJTNE"
+							"fileName": "13231178_10206017175857943_230801434_n.jpg",
+							"fileUrl": "http://localhost:10000/devstoreaccount1/static-content/localFolder/aggelos/13231178_10206017175857943_230801434_n.jpg?sv=2019-07-07&st=2020-07-27T08%3A17%3A48Z&se=2020-07-27T08%3A27%3A48Z&sr=b&sp=r&sig=v3zd5u8aj7eSISNLdLRVcc4EDejCewrgLHPnA13CiOU%3D"
 						},
 						{
-							"fileName": "localFolder/aggelos/15578791_1689224584455306_4700597824734174303_n.jpg",
-							"fileUrl": "https://localhost:44373/gatekeeper/files/aggelos/15578791_1689224584455306_4700597824734174303_n.jpg/c3Y9MjAxOS0wNy0wNyZzdD0yMDIwLTA3LTI2VDE3JTNBMTUlM0E0MVomc2U9MjAyMC0wNy0yNlQxNyUzQTI1JTNBNDFaJnNyPWImc3A9ciZzaWc9U2pSODU3SGlCanJwMlVWVU9WQ3hHb1QlMkZCcjcwM0M5dGlBOGpxdlBTbjBVJTNE"
+							"fileName": "15578791_1689224584455306_4700597824734174303_n.jpg",
+							"fileUrl": "http://localhost:10000/devstoreaccount1/static-content/localFolder/aggelos/15578791_1689224584455306_4700597824734174303_n.jpg?sv=2019-07-07&st=2020-07-27T08%3A17%3A48Z&se=2020-07-27T08%3A27%3A48Z&sr=b&sp=r&sig=LXcZHOS0IRZH5%2FGJ7wZOBHcJxZGOVph4rnM3dE%2FAjU0%3D"
 						},
 						{
-							"fileName": "localFolder/aggelos/YX4fJzc.jpg",
-							"fileUrl": "https://localhost:44373/gatekeeper/files/aggelos/YX4fJzc.jpg/c3Y9MjAxOS0wNy0wNyZzdD0yMDIwLTA3LTI2VDE3JTNBMTUlM0E0MVomc2U9MjAyMC0wNy0yNlQxNyUzQTI1JTNBNDFaJnNyPWImc3A9ciZzaWc9JTJCWGV4R21uZFFYJTJCUEZHcU1KZWlwMFFzJTJGZyUyQlE2MEpLMnpZczZkcklzeERFJTNE"
+							"fileName": "YX4fJzc.jpg",
+							"fileUrl": "http://localhost:10000/devstoreaccount1/static-content/localFolder/aggelos/YX4fJzc.jpg?sv=2019-07-07&st=2020-07-27T08%3A17%3A48Z&se=2020-07-27T08%3A27%3A48Z&sr=b&sp=r&sig=fzSHTa4YO%2ByrZxxrdaZ6pSkMYpqEVdB7yQE0Rz%2Fe45Q%3D"
 						}
 					]
 	2. 204-no content: []
-
-5.
-Service: DownloadFile
-URL: https://localhost:44308/files/{username}/{filename}/{valetKey}
-HTTPType: GET
-Request: - 
-Responses:
-	1. 200-success: file blob
-	2. 404-not found: {filename}
 	
-6.
+5.
 Service: RefreshUserFileValetKey
 URL: https://localhost:44308/files/refreshValetKey/{username}/{filename}?lifeTime={seconds}
 HTTPType: GET
 Request: - 
 Responses:
 	1. 200-success: {
-						"fileName": "localFolder/aggelos/13231178_10206017175857943_230801434_n.jpg",
-						"fileUrl": "https://localhost:44373/gatekeeper/files/aggelos/13231178_10206017175857943_230801434_n.jpg/c3Y9MjAxOS0wNy0wNyZzdD0yMDIwLTA3LTI2VDE3JTNBMTUlM0E0MVomc2U9MjAyMC0wNy0yNlQxNyUzQTI1JTNBNDFaJnNyPWImc3A9ciZzaWc9VU5qREdsQ0tGdXVQWVFhWU8zV05oOU9SVnpWbSUyQkNGTWl1S3N6T1Z5aWxRJTNE"
+						"fileName": "13231178_10206017175857943_230801434_n.jpg",
+						"fileUrl": "http://localhost:10000/devstoreaccount1/static-content/localFolder/aggelos/13231178_10206017175857943_230801434_n.jpg?sv=2019-07-07&st=2020-07-27T08%3A24%3A49Z&se=2020-07-27T08%3A34%3A49Z&sr=b&sp=r&sig=StBbrmbeJIuXfrYj%2FdH60RgnVvyUWibdHRRG%2BGPE1lw%3D"
 					}
-	2. 404-not found: {
-						"fileName": "{filename}",
-						"fileUrl": "404 Not Found"
-					  }
-7.
+	2. 404-not found: {filename}
+6.
 Service: DeleteUserFile
 URL: https://localhost:44308/files/{username}/{filename}
 HTTPType: DELETE
@@ -253,7 +229,7 @@ Responses:
 	1. 200-success: Backend response code
 	2. 404-not found: {filename}
 	
-8.
+7.
 Service: PostUserFile
 URL: https://localhost:44308/files/{username}
 HTTPType: POST
@@ -264,6 +240,7 @@ Responses:
 Notes:
 Local GateKeeper url: https://localhost:44373/gatekeeper/
 Local BackEnd url: https://localhost:44373/gatekeeper/
+Local Azure Storage Emulator url: http://localhost:10000/devstoreaccount1/static-content/
 Both GateKeeper and BackEnd use HTTPS.
 GateKeeper endpoints are public, while BackEnd are accessible only in local network.
 Base Authentication is used on GateKeeper for User Authentication.

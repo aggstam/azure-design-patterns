@@ -251,9 +251,11 @@ MongoDB is used to store Users information.
 Azure local storage is used for content hosting.
 Valet Keys are used in order to retrieve content from Azure local storage.
 When a BackEnd service fails, HTTP status 500 is returned to GateKeeper.
-
+BackEnd uses secrets.json. In order to use it locally, place it under: C:\Users\<user>\AppData\Roaming\Microsoft\UserSecrets\<app_id>
+In order to initialize MongoDB, execute: mongod --dbpath <path_to_folder>\azure-design-patterns\BackEnd\BackEnd\database\UsersData
 
 db.Users.insertMany([{'FirstName':'','LastName':'','Email':'','Username':'gatekeeper','Password':'gatekeeper'},
                      {'FirstName':'Aggelos','LastName':'Stamatiou','Email':'aggelos@gmail.com','Username':'aggelos','Password':'aggelos'},
 					 {'FirstName':'Giorgos','LastName':'Weider','Email':'giorgos@gmail.com','Username':'giorgos','Password':'giorgos'},
 					 {'FirstName':'Stavros','LastName':'Laios','Email':'stavros@gmail.com','Username':'stavros','Password':'stavros'}])
+					 

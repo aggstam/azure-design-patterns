@@ -45,6 +45,9 @@ namespace BackEnd.Controllers
         [HttpGet("{username}")]
         public IActionResult GetUserFilesInfo([FromRoute] string username)
         {
+            double lifetime = _valetKeyDefaultLifeTime;
+            string lifeTimeString = Request.Query["lifeTime"];
+            if (lifeTimeString != string.Empty) { lifetime = double.Parse(lifeTimeString); }
             string userFolder = string.Format("{0}/{1}/", _staticContentStorageFolder, username);
             List<FileInfo> userFilesInfo = new List<FileInfo>();
             Pageable<BlobItem> blobs = _staticContentContainer.GetBlobs(prefix: userFolder);
@@ -53,23 +56,11 @@ namespace BackEnd.Controllers
                 foreach (var blob in blobs)
                 {
                     string fileName = blob.Name.Replace(userFolder, "");
-                    userFilesInfo.Add(generateFileInfo(blob.Name, fileName, _valetKeyDefaultLifeTime));
+                    userFilesInfo.Add(generateFileInfo(blob.Name, fileName, lifetime));
                 }
                 return Ok(userFilesInfo);
             }
             return NoContent();
-        }
-
-        [HttpGet("refreshValetKey/{username}/{fileName}")]
-        public IActionResult RefreshUserFileValetKey([FromRoute] string username, string fileName)
-        {
-            double lifetime = _valetKeyDefaultLifeTime;
-            string lifeTimeString = Request.Query["lifeTime"];
-            if (lifeTimeString != string.Empty) { lifetime = double.Parse(lifeTimeString); }
-            string blobName = string.Format("{0}/{1}/{2}", _staticContentStorageFolder, username, fileName);
-            var blob = _staticContentContainer.GetBlobClient(blobName);
-            if (blob.Exists()) { return Ok(generateFileInfo(blob.Name, fileName, lifetime)); }
-            return NotFound();
         }
 
         [HttpDelete("{username}/{fileName}")]

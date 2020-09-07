@@ -96,7 +96,10 @@ namespace GateKeeper.Controllers
             try
             {
                 if (!_validationService.ValidateCaller(Request.Headers["Authorization"], username)) return Unauthorized();
-                string filesUrl = string.Format("{0}/{1}", _filesUrl, username);
+                string lifeTime = Request.Query["lifeTime"];
+                string validationError = _validationService.ValidateValetKeyLifeTime(lifeTime);
+                if (validationError != null) { return BadRequest(validationError); }
+                string filesUrl = string.Format("{0}/{1}?lifeTime={2}", _filesUrl, username, lifeTime);
                 HttpStatusCode responseStatusCode;
                 string responseBody = "";
                 using (var client = new HttpClient())
@@ -113,35 +116,6 @@ namespace GateKeeper.Controllers
                 _logger.LogInformation("[GateKeeperController/GetUserFilesInfo] Exception occured. Message: {0}", ex.Message);
                 return Ok(ex.Message);
             }
-        }
-
-        [Authorize]
-        [HttpGet("files/refreshValetKey/{username}/{fileName}")]
-        public IActionResult RefreshUserFileValetKey([FromRoute] string username, string fileName)
-        {
-            try
-            {
-                if (!_validationService.ValidateCaller(Request.Headers["Authorization"], username)) return Unauthorized();
-                string lifeTime = Request.Query["lifeTime"];
-                string validationError = _validationService.ValidateValetKeyLifeTime(lifeTime);
-                if (validationError != null) { return BadRequest(validationError); }
-                string refreshValetKeyUrl = string.Format("{0}/{1}/{2}?lifeTime={3}", _refreshValetKeyUrl, username, fileName, lifeTime);
-                HttpStatusCode responseStatusCode;
-                string responseBody = "";
-                using (var client = new HttpClient())
-                {
-                    using var message = client.GetAsync(refreshValetKeyUrl);
-                    responseStatusCode = message.Result.StatusCode;
-                    responseBody = message.Result.Content.ReadAsStringAsync().Result;
-                }
-                if (responseStatusCode.Equals(HttpStatusCode.OK)) { return Ok(JsonSerializer.Deserialize<FileInfo>(responseBody, _jsonSerializerOptions)); }
-                return Ok(responseStatusCode);
-            }
-            catch (Exception ex)
-            {
-                _logger.LogInformation("[GateKeeperController/RefreshUserFileValetKey] Exception occured. Message: {0}", ex.Message);
-                return Ok(ex.Message);
-            }            
         }
 
         [Authorize]

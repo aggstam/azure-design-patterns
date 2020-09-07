@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "KUEhTwKK8HzyejTlOL9jbJ0i8VHhV5ODSk1AnMycosEWu4Pw8XuSX54egxS/BY2gzRbD7kiil2f+XA5fZTAwcg==",
+  "dgSpecHash": "8Z6ZJLjlkLYFvxKF9zRg4yPo0xeH1TGaid8ltW7EWmR1pWGUhpApVMb2eUGAC7yr3vy4bkgl2hJYEGyLF5IRnw==",
   "success": true,
   "projectFilePath": "C:\\Users\\angel\\Downloads\\design_patterns\\ergasia\\azure-design-patterns\\BackEnd\\BackEnd\\BackEnd.csproj",
   "expectedPackageFiles": [
@@ -131,8 +131,7 @@
     "c:\\program files\\dotnet\\sdk\\NuGetFallbackFolder\\system.xml.readerwriter\\4.3.0\\system.xml.readerwriter.4.3.0.nupkg.sha512",
     "c:\\program files\\dotnet\\sdk\\NuGetFallbackFolder\\system.xml.xdocument\\4.3.0\\system.xml.xdocument.4.3.0.nupkg.sha512",
     "c:\\program files\\dotnet\\sdk\\NuGetFallbackFolder\\system.xml.xmldocument\\4.3.0\\system.xml.xmldocument.4.3.0.nupkg.sha512",
-    "c:\\program files\\dotnet\\sdk\\NuGetFallbackFolder\\system.xml.xmlserializer\\4.3.0\\system.xml.xmlserializer.4.3.0.nupkg.sha512",
-    "C:\\Users\\angel\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\3.1.2\\microsoft.aspnetcore.app.ref.3.1.2.nupkg.sha512"
+    "c:\\program files\\dotnet\\sdk\\NuGetFallbackFolder\\system.xml.xmlserializer\\4.3.0\\system.xml.xmlserializer.4.3.0.nupkg.sha512"
   ],
   "logs": []
 }

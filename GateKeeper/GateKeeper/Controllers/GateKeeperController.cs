@@ -124,7 +124,7 @@ namespace GateKeeper.Controllers
                 if (!_validationService.ValidateCaller(Request.Headers["Authorization"], username)) return Unauthorized();
                 string lifeTime = Request.Query["lifeTime"];
                 string validationError = _validationService.ValidateValetKeyLifeTime(lifeTime);
-                if (validationError != null) { return BadRequest(); }
+                if (validationError != null) { return BadRequest(validationError); }
                 string refreshValetKeyUrl = string.Format("{0}/{1}/{2}?lifeTime={3}", _refreshValetKeyUrl, username, fileName, lifeTime);
                 HttpStatusCode responseStatusCode;
                 string responseBody = "";

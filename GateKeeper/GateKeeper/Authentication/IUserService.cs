@@ -1,5 +1,4 @@
 ﻿using Microsoft.Extensions.Configuration;
-using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
@@ -13,14 +12,13 @@ namespace GateKeeper.Authentication
     {
         Task<User> Authenticate(string username, string password);
         Task<User> Authenticate(AuthenticationHeaderValue authHeader);
-        Task<IEnumerable<User>> GetAll();
     }
 
     public class UserService : IUserService
     {
-        private readonly string _authorizeUrl;
-        private readonly string _loginUrl;
-        private readonly JsonSerializerOptions _jsonSerializerOptions;
+        private readonly string _authorizeUrl; // Backend authorize controller endpoint.
+        private readonly string _loginUrl; // Backend login controller endpoint.
+        private readonly JsonSerializerOptions _jsonSerializerOptions;  // Used to remove case sensitivity of serializer.
 
         public UserService(IConfiguration configuration)
         {
@@ -29,6 +27,7 @@ namespace GateKeeper.Authentication
             _jsonSerializerOptions = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
         }
 
+        // This method is used to login a user, by executing a call to Backend login endpoint.
         public async Task<User> Authenticate(string username, string password)
         {
             AuthenticateModel authenticateModel = new AuthenticateModel { Username = username, Password = password };
@@ -45,6 +44,7 @@ namespace GateKeeper.Authentication
             return null;
         }
 
+        // This method is used to check authorization header validity, by executing a call to Backend autorization endpoint.
         public async Task<User> Authenticate(AuthenticationHeaderValue authHeader)
         {
             HttpStatusCode responseStatusCode;
@@ -58,11 +58,6 @@ namespace GateKeeper.Authentication
             }
             if (responseStatusCode.Equals(HttpStatusCode.OK)) { return JsonSerializer.Deserialize<User>(responseBody, _jsonSerializerOptions); }
             return null;
-        }
-
-        public async Task<IEnumerable<User>> GetAll()
-        {
-            throw new System.NotImplementedException();
         }
     }
 }

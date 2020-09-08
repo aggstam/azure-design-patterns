@@ -22,10 +22,9 @@ namespace GateKeeper.Controllers
         private readonly ILogger<GateKeeperController> _logger;
         private readonly IUserService _userService;
         private readonly IValidationService _validationService;
-        private readonly string _signUpUrl;
-        private readonly string _filesUrl;
-        private readonly string _refreshValetKeyUrl;
-        private readonly JsonSerializerOptions _jsonSerializerOptions;
+        private readonly string _signUpUrl; // Backend sign up controller endpoint.
+        private readonly string _filesUrl; // Backend files controller endpoint.
+        private readonly JsonSerializerOptions _jsonSerializerOptions;   // Used to remove case sensitivity of serializer.
 
         public GateKeeperController(IConfiguration configuration, ILogger<GateKeeperController> logger, IUserService userService, IValidationService validationService)
         {
@@ -34,12 +33,12 @@ namespace GateKeeper.Controllers
             _validationService = validationService;
             _signUpUrl = configuration["BackEndURLs.SignUp"];
             _filesUrl = configuration["BackEndURLs.Files"];
-            _refreshValetKeyUrl = configuration["BackEndURLs.Files.RefreshValetKey"];
             _jsonSerializerOptions = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
         }
 
         [AllowAnonymous]
         [HttpPost("login")]
+        // This method enables users to login to the service.
         public IActionResult LoginUser([FromBody] AuthenticateModel model)
         {
             try
@@ -59,6 +58,7 @@ namespace GateKeeper.Controllers
 
         [AllowAnonymous]
         [HttpPost("signup")]
+        // This method enables users to signup to the service.
         public IActionResult SignUpUser([FromBody] User user)
         {
             try
@@ -91,6 +91,7 @@ namespace GateKeeper.Controllers
 
         [Authorize]
         [HttpGet("files/{username}")]
+        // This method enables users to retrieve filename and static content hosting url of all their files.
         public IActionResult GetUserFilesInfo([FromRoute] string username)
         {
             try
@@ -120,6 +121,7 @@ namespace GateKeeper.Controllers
 
         [Authorize]
         [HttpDelete("files/{username}/{fileName}")]
+        // This method enables users to remove files from their azure storage folder.
         public IActionResult DeleteUserFile([FromRoute] string username, string fileName)
         {
             try
@@ -145,6 +147,7 @@ namespace GateKeeper.Controllers
 
         [Authorize]
         [HttpPost("files/{username}")]
+        // This method enables users to upload new files to their azure storage folder.
         public IActionResult PostUserFile([FromRoute] string username, [FromForm] IFormFile file)
         {
             try

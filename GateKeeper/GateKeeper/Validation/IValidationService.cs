@@ -22,13 +22,13 @@ namespace GateKeeper.Validation
     public class ValidationService : IValidationService
     {
         private readonly ILogger<ValidationService> _logger;
-        private readonly Regex _usernamePattern;
-        private readonly int _usernameMinLength;
-        private readonly Regex _passwordPattern;
-        private readonly int _passwordMinLength;
-        private readonly List<string> _fileTypes;
-        private readonly long _fileMaxSize;
-        private readonly double _valetKeyMaxLifetime;
+        private readonly Regex _usernamePattern; // Valid username pattern.
+        private readonly int _usernameMinLength; // Valid username min length.
+        private readonly Regex _passwordPattern; // Valid password pattern.
+        private readonly int _passwordMinLength; // Valid password min length.
+        private readonly List<string> _fileTypes; // Accepted file types.
+        private readonly long _fileMaxSize; // Accepted file max size.
+        private readonly double _valetKeyMaxLifetime; // Valid Valet key max duration.
 
         public ValidationService(IConfiguration configuration, ILogger<ValidationService> logger)
         {
@@ -42,6 +42,7 @@ namespace GateKeeper.Validation
             _valetKeyMaxLifetime = double.Parse(configuration["Validation.ValetKey.MaxLifeTime"]);
         }
 
+        // This method is used to validate user credentials, based on predifined rules.
         public List<string> ValidateCredentials(string username, string password)
         {
             List<string> validationErrors = new List<string>(); 
@@ -57,6 +58,7 @@ namespace GateKeeper.Validation
             return validationErrors;
         }
 
+        // This method is used to validate that caller(username) matches the authorization header user.
         public bool ValidateCaller(string authHeaderString, string username)
         {
             var authHeader = AuthenticationHeaderValue.Parse(authHeaderString);
@@ -65,6 +67,7 @@ namespace GateKeeper.Validation
             return username == credentials[0];
         }
 
+        // This method is used to validate a file, based on predifined rules.
         public string ValidateFile(IFormFile file)
         {
             if (file == null) { return "Form did not contained a file."; }
@@ -76,6 +79,7 @@ namespace GateKeeper.Validation
             return null;
         }
 
+        // This method is used to validate Valet key duration, based on predifined rules.
         public string ValidateValetKeyLifeTime(string lifeTimeString)
         {
             if (lifeTimeString != null && lifeTimeString.Trim().Length != 0)

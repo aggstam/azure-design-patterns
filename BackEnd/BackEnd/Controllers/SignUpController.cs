@@ -19,6 +19,7 @@ namespace BackEnd.Controllers
         }
 
         [HttpPost]
+        // This method enables users to signup to the service.
         public IActionResult SignUpUser([FromBody] User user)
         {
             var created = _userService.CreateUser(user).Result;

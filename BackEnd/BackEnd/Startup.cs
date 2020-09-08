@@ -27,7 +27,7 @@ namespace BackEnd
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
+        // This method gets called by the runtime to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             string staticContentConnectionString = Configuration["ConnectionStrings:StaticContent.StorageConnectionString"];
@@ -46,16 +46,16 @@ namespace BackEnd
             DeployStaticContent(staticContentConnectionString, staticContentContainerName);
         }
 
+        // This methid is used to initialize the Azure storage container with private access permissions on the blobs.
         private void DeployStaticContent(string staticContentConnectionString, string staticContentContainerName)
         {
 
             var blobServiceClient = new BlobServiceClient(staticContentConnectionString);
             var staticContentContainer = blobServiceClient.GetBlobContainerClient(staticContentContainerName);
-
-            //Create the container with private access permissions on the blobs in those containers
             staticContentContainer.DeleteIfExists();
             staticContentContainer.CreateIfNotExists(PublicAccessType.None);
 
+            // Uploads dummy files used for testing.
             var userFolders = Directory.GetDirectories(Configuration["ConnectionStrings:StaticContent.StorageFolder"]);
             foreach (var userFolder in userFolders)
             {
@@ -72,7 +72,7 @@ namespace BackEnd
             }            
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        // This method gets called by the runtime to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment()) { app.UseDeveloperExceptionPage(); }

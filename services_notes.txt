@@ -62,7 +62,7 @@ Responses:
 
 3.
 Service: GetUserFilesInformation
-URL: https://localhost:44373/gatekeeper/files/{username}
+URL: https://localhost:44373/gatekeeper/files/{username}?lifeTime={seconds}
 HTTPType: GET
 Request: - 
 Responses:
@@ -83,25 +83,11 @@ Responses:
 	2. 200-success: 204(no content)
 	3. 200-success: Backend response code
 	4. 200-success: exception message
-	5. 401 Unauthorized: when {username} in url doesn't match Authorization Header username
+	5. 400-bad request: Valet Key life time must be a positive number.
+	6. 400-bad request: Valet Key life time exceeds limit. Max life time: {valetKeyMaxLifeTime}
+	7. 401 Unauthorized: when {username} in url doesn't match Authorization Header username
 	
 4.
-Service: RefreshUserFileValetKey
-URL: https://localhost:44373/gatekeeper/files/refreshValetKey/{username}/{filename}?lifeTime={seconds}
-HTTPType: GET
-Request: - 
-Responses:
-	1. 200-success: {
-						"fileName": "13231178_10206017175857943_230801434_n.jpg",
-						"fileUrl": "http://localhost:10000/devstoreaccount1/static-content/localFolder/aggelos/13231178_10206017175857943_230801434_n.jpg?sv=2019-07-07&st=2020-07-27T08%3A24%3A49Z&se=2020-07-27T08%3A34%3A49Z&sr=b&sp=r&sig=StBbrmbeJIuXfrYj%2FdH60RgnVvyUWibdHRRG%2BGPE1lw%3D"
-					}
-	2. 200-success: Backend response code
-	3. 200-success: exception message
-	4. 400-bad request: Valet Key life time must be a positive number.
-	5. 400-bad request: Valet Key life time exceeds limit. Max life time: {valetKeyMaxLifeTime}
-	6. 401 Unauthorized: when {username} in url doesn't match Authorization Header username
-	
-5.
 Service: DeleteUserFile
 URL: https://localhost:44373/gatekeeper/files/{username}/{filename}
 HTTPType: DELETE
@@ -111,7 +97,7 @@ Responses:
 	2. 200-success: exception message
 	3. 401 Unauthorized: when {username} in url doesn't match Authorization Header username
 	
-6.
+5.
 Service: PostUserFile
 URL: https://localhost:44373/gatekeeper/files/{username}
 HTTPType: POST
@@ -189,7 +175,7 @@ Responses:
 
 4.
 Service: GetUserFilesInformation
-URL: https://localhost:44308/files/{username}
+URL: https://localhost:44308/files/{username}?lifeTime={seconds}
 HTTPType: GET
 Request: - 
 Responses:
@@ -210,17 +196,6 @@ Responses:
 	2. 204-no content: []
 	
 5.
-Service: RefreshUserFileValetKey
-URL: https://localhost:44308/files/refreshValetKey/{username}/{filename}?lifeTime={seconds}
-HTTPType: GET
-Request: - 
-Responses:
-	1. 200-success: {
-						"fileName": "13231178_10206017175857943_230801434_n.jpg",
-						"fileUrl": "http://localhost:10000/devstoreaccount1/static-content/localFolder/aggelos/13231178_10206017175857943_230801434_n.jpg?sv=2019-07-07&st=2020-07-27T08%3A24%3A49Z&se=2020-07-27T08%3A34%3A49Z&sr=b&sp=r&sig=StBbrmbeJIuXfrYj%2FdH60RgnVvyUWibdHRRG%2BGPE1lw%3D"
-					}
-	2. 404-not found: {filename}
-6.
 Service: DeleteUserFile
 URL: https://localhost:44308/files/{username}/{filename}
 HTTPType: DELETE
@@ -229,7 +204,7 @@ Responses:
 	1. 200-success: Backend response code
 	2. 404-not found: {filename}
 	
-7.
+6.
 Service: PostUserFile
 URL: https://localhost:44308/files/{username}
 HTTPType: POST
@@ -259,3 +234,10 @@ db.Users.insertMany([{'FirstName':'','LastName':'','Email':'','Username':'gateke
 					 {'FirstName':'Giorgos','LastName':'Weider','Email':'giorgos@gmail.com','Username':'giorgos','Password':'giorgos'},
 					 {'FirstName':'Stavros','LastName':'Laios','Email':'stavros@gmail.com','Username':'stavros','Password':'stavros'}])
 					 
+
+Technical info:
+Programming language -> ASP.NET Core(C#) v3.1
+Programming Environment -> Visual Studio Community 2019 v16.7.2
+Database -> MongoDB v4.2.8
+Content Hosting -> Microsoft Azure Storage Emulator v5.10
+

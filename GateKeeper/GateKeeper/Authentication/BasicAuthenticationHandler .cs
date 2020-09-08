@@ -23,6 +23,7 @@ namespace GateKeeper.Authentication
             _userService = userService;
         }
 
+        // This method is used to validate Authorization header of each request.
         protected override async Task<AuthenticateResult> HandleAuthenticateAsync()
         {
             if (!Request.Headers.ContainsKey("Authorization")) { return AuthenticateResult.Fail("Missing Authorization Header."); }                

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net;
 using System.Threading;
 using Azure;
 using Azure.Storage;
@@ -20,12 +19,12 @@ namespace BackEnd.Controllers
     public class FilesController : ControllerBase
     {
         private readonly ILogger<FilesController> _logger;
-        private readonly string _staticContentConnectionString;
-        private readonly string _staticContentContainerName;
-        private readonly string _staticContentStorageFolder;
-        private readonly string _staticContentAccountKey;
-        private readonly string _staticContentAzureUrl;
-        private readonly double _valetKeyDefaultLifeTime;
+        private readonly string _staticContentConnectionString; // Azure storage configuration.
+        private readonly string _staticContentContainerName; // Azure storage container name.
+        private readonly string _staticContentStorageFolder; // Azure storage folder name.
+        private readonly string _staticContentAccountKey; // Azure storage account key.
+        private readonly string _staticContentAzureUrl; // Azure storage endpoint.
+        private readonly double _valetKeyDefaultLifeTime; // Static content hosting default Valet key duration.
         private readonly BlobServiceClient _blobServiceClient;
         private readonly BlobContainerClient _staticContentContainer;
 
@@ -43,6 +42,7 @@ namespace BackEnd.Controllers
         }
 
         [HttpGet("{username}")]
+        // This method enables users to retrieve filename and static content hosting url of all their files.
         public IActionResult GetUserFilesInfo([FromRoute] string username)
         {
             double lifetime = _valetKeyDefaultLifeTime;
@@ -64,6 +64,7 @@ namespace BackEnd.Controllers
         }
 
         [HttpDelete("{username}/{fileName}")]
+        // This method enables users to remove files from their azure storage folder.
         public IActionResult DeleteUserFile([FromRoute] string username, string fileName)
         {
             string blobName = string.Format("{0}/{1}/{2}", _staticContentStorageFolder, username, fileName);
@@ -73,6 +74,7 @@ namespace BackEnd.Controllers
         }
 
         [HttpPost("{username}")]
+        // This method enables users to upload new files to their azure storage folder.
         public IActionResult PostUserFile([FromRoute] string username, [FromForm] IFormFile file)
         {
             var blobFile = _staticContentContainer.GetBlobClient(string.Format("{0}/{1}/{2}", _staticContentStorageFolder, username, file.FileName));
@@ -82,6 +84,7 @@ namespace BackEnd.Controllers
             return Ok(file.FileName);
         }
 
+        // This method generates the Valet key used in the static content hosting url of a file.
         private FileInfo generateFileInfo(string blobName, string fileName, double lifeTime)
         {
             var storageSharedKeyCredential = new StorageSharedKeyCredential(_blobServiceClient.AccountName, _staticContentAccountKey);

@@ -18,6 +18,7 @@ namespace BackEnd.Controllers
         }
 
         [HttpPost]
+        // This method enables users to login to the service.
         public IActionResult LoginUserAsync([FromBody] AuthenticateModel model)
         {
             var user = _userService.Authenticate(model.Username, model.Password).Result;

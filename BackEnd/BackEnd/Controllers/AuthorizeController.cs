@@ -21,6 +21,7 @@ namespace BackEnd.Controllers
         }
 
         [HttpGet]
+        // This method is used to check authorization header validity.
         public IActionResult AuthorizeAsync()
         {
             var authHeader = AuthenticationHeaderValue.Parse(Request.Headers["Authorization"]);

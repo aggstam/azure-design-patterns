@@ -52,6 +52,7 @@ namespace BackEnd
 
             var blobServiceClient = new BlobServiceClient(staticContentConnectionString);
             var staticContentContainer = blobServiceClient.GetBlobContainerClient(staticContentContainerName);
+            // Resets containter. Used only for testing. Comment in production environment
             staticContentContainer.DeleteIfExists();
             staticContentContainer.CreateIfNotExists(PublicAccessType.None);
 

@@ -1,9 +1,0 @@
-{
-  "dependencies": {
-    "storage1": {
-      "type": "storage.emulator",
-      "connectionId": "StaticContent.StorageConnectionString",
-      "secretStore": "LocalSecretsFile"
-    }
-  }
-}

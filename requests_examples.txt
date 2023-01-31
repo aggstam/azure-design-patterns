@@ -1,0 +1,222 @@
+GateKeeper Services
+
+1. 
+Service: Login
+URL: https://localhost:44373/gatekeeper/login
+HTTPType: POST
+Request:
+    {
+        "username" : "stavros",
+        "password" : "stavros"
+    }
+Responses:
+    1. 200-success:
+        {
+            "id": "5f156b7e1188af1bda81c2bf",
+            "firstName": "Stavros",
+            "lastName": "Laios",
+            "email": "stavros@gmail.com",
+            "username": "stavros",
+            "password": null
+        }
+    2. 200-success: exception message
+    3. 400-bad request: The Username field is required.
+    4. 400-bad request: The Password field is required.
+    5. 400-bad request: 
+        [
+            "Username must follow the pattern: ^[a-z0-9]+$",
+            "Username length must be greater or equal to 6 characters.",
+            "Password must follow the pattern: ^[a-zA-Z0-9.!@#$%^&*_-]+$",
+            "Password length must be greater or equal to 6 characters."
+        ]
+    6. 400-bad request: Username or password is incorrect
+
+2. 
+Service: SignUp
+URL: https://localhost:44373/gatekeeper/signup
+HTTPType: POST
+Request:
+    {
+        "firstName": "Stavros",
+        "lastName": "Laios",
+        "email": "stavros@gmail.com",
+        "username": "stavros",
+        "password": "stavros"
+    }
+Responses:
+    1. 200-success:
+        {
+            "id": "5f156b7e1188af1bda81c2bf",
+            "firstName": "Stavros",
+            "lastName": "Laios",
+            "email": "stavros@gmail.com",
+            "username": "stavros",
+            "password": null
+        }
+    2. 200-success: exception message
+    3. 400-bad request: Username or password cannot be empty.
+    4. 400-bad request: 
+        [
+            "Username must follow the pattern: ^[a-z0-9]+$",
+            "Username length must be greater or equal to 6 characters.",
+            "Password must follow the pattern: ^[a-zA-Z0-9.!@#$%^&*_-]+$",
+            "Password length must be greater or equal to 6 characters."
+        ]
+    5. 400-bad request: User already exists.
+
+3.
+Service: GetUserFilesInformation
+URL: https://localhost:44373/gatekeeper/files/{username}?lifeTime={seconds}
+HTTPType: GET
+Request: - 
+Responses:
+    1. 200-success:
+        [
+            {
+                "fileName": "13231178_10206017175857943_230801434_n.jpg",
+                "fileUrl": "http://localhost:10000/devstoreaccount1/static-content/localFolder/aggelos/13231178_10206017175857943_230801434_n.jpg?sv=2019-07-07&st=2020-07-27T08%3A17%3A48Z&se=2020-07-27T08%3A27%3A48Z&sr=b&sp=r&sig=v3zd5u8aj7eSISNLdLRVcc4EDejCewrgLHPnA13CiOU%3D"
+            },
+            {
+                "fileName": "15578791_1689224584455306_4700597824734174303_n.jpg",
+                "fileUrl": "http://localhost:10000/devstoreaccount1/static-content/localFolder/aggelos/15578791_1689224584455306_4700597824734174303_n.jpg?sv=2019-07-07&st=2020-07-27T08%3A17%3A48Z&se=2020-07-27T08%3A27%3A48Z&sr=b&sp=r&sig=LXcZHOS0IRZH5%2FGJ7wZOBHcJxZGOVph4rnM3dE%2FAjU0%3D"
+            },
+            {
+                "fileName": "YX4fJzc.jpg",
+                "fileUrl": "http://localhost:10000/devstoreaccount1/static-content/localFolder/aggelos/YX4fJzc.jpg?sv=2019-07-07&st=2020-07-27T08%3A17%3A48Z&se=2020-07-27T08%3A27%3A48Z&sr=b&sp=r&sig=fzSHTa4YO%2ByrZxxrdaZ6pSkMYpqEVdB7yQE0Rz%2Fe45Q%3D"
+            }
+        ]
+    2. 200-success: 204(no content)
+    3. 200-success: Backend response code
+    4. 200-success: exception message
+    5. 400-bad request: Valet Key life time must be a positive number.
+    6. 400-bad request: Valet Key life time exceeds limit. Max life time: {valetKeyMaxLifeTime}
+    7. 401 Unauthorized: when {username} in url doesn't match Authorization Header username
+    
+4.
+Service: DeleteUserFile
+URL: https://localhost:44373/gatekeeper/files/{username}/{filename}
+HTTPType: DELETE
+Request: - 
+Responses:
+    1. 200-success: Backend response code
+    2. 200-success: exception message
+    3. 401 Unauthorized: when {username} in url doesn't match Authorization Header username
+    
+5.
+Service: PostUserFile
+URL: https://localhost:44373/gatekeeper/files/{username}
+HTTPType: POST
+Request: form-data:{file:{file blob}
+Responses:
+    1. 200-success: Backend response code
+    2. 200-success: exception message
+    3. 400-bad request: Form did not contained a file.
+    4. 400-bad request: File is not an image.
+    5. 400-bad request: File does not have an extension.
+    6. 400-bad request: File type is not accepted. Accepted types: {acceptedFileTypesList}
+    7. 400-bad request: File size exceeds limit. Max file size: {maxFileSize in MB}
+    8. 401 Unauthorized: when {username} in url doesn't match Authorization Header username
+    
+BackEnd Services
+
+1. 
+Service: Login
+URL: https://localhost:44308/login
+HTTPType: POST
+Request:
+    {
+        "username" : "stavros",
+        "password" : "stavros"
+    }
+Responses:
+    1. 200-success:
+        {
+            "id": "5f156b7e1188af1bda81c2bf",
+            "firstName": "Stavros",
+            "lastName": "Laios",
+            "email": "stavros@gmail.com",
+            "username": "stavros",
+            "password": null
+        }
+    2. 400-bad request: Username or password is incorrect
+
+2. 
+Service: SignUp
+URL: https://localhost:44308/signup
+HTTPType: POST
+Request:
+    {
+        "firstName": "Stavros",
+        "lastName": "Laios",
+        "email": "stavros@gmail.com",
+        "username": "stavros",
+        "password": "stavros"
+    }
+Responses:
+    1. 200-success:
+        {
+            "id": "5f156b7e1188af1bda81c2bf",
+            "firstName": "Stavros",
+            "lastName": "Laios",
+            "email": "stavros@gmail.com",
+            "username": "stavros",
+            "password": null
+        }
+    2. 400-bad request: User already exists.
+    
+3. 
+Service: Authorize
+URL: https://localhost:44308/authorize
+HTTPType: POST
+Request: -
+Responses:
+    1. 200-success:
+        {
+            "id": "5f156b7e1188af1bda81c2bf",
+            "firstName": "Stavros",
+            "lastName": "Laios",
+            "email": "stavros@gmail.com",
+            "username": "stavros",
+            "password": null
+        }
+    2. 400-bad request: Username or password is incorrect.
+
+4.
+Service: GetUserFilesInformation
+URL: https://localhost:44308/files/{username}?lifeTime={seconds}
+HTTPType: GET
+Request: - 
+Responses:
+    1. 200-success:
+        [
+            {
+                "fileName": "13231178_10206017175857943_230801434_n.jpg",
+                "fileUrl": "http://localhost:10000/devstoreaccount1/static-content/localFolder/aggelos/13231178_10206017175857943_230801434_n.jpg?sv=2019-07-07&st=2020-07-27T08%3A17%3A48Z&se=2020-07-27T08%3A27%3A48Z&sr=b&sp=r&sig=v3zd5u8aj7eSISNLdLRVcc4EDejCewrgLHPnA13CiOU%3D"
+            },
+            {
+                "fileName": "15578791_1689224584455306_4700597824734174303_n.jpg",
+                "fileUrl": "http://localhost:10000/devstoreaccount1/static-content/localFolder/aggelos/15578791_1689224584455306_4700597824734174303_n.jpg?sv=2019-07-07&st=2020-07-27T08%3A17%3A48Z&se=2020-07-27T08%3A27%3A48Z&sr=b&sp=r&sig=LXcZHOS0IRZH5%2FGJ7wZOBHcJxZGOVph4rnM3dE%2FAjU0%3D"
+            },
+            {
+                "fileName": "YX4fJzc.jpg",
+                "fileUrl": "http://localhost:10000/devstoreaccount1/static-content/localFolder/aggelos/YX4fJzc.jpg?sv=2019-07-07&st=2020-07-27T08%3A17%3A48Z&se=2020-07-27T08%3A27%3A48Z&sr=b&sp=r&sig=fzSHTa4YO%2ByrZxxrdaZ6pSkMYpqEVdB7yQE0Rz%2Fe45Q%3D"
+            }
+        ]
+    2. 204-no content: []
+    
+5.
+Service: DeleteUserFile
+URL: https://localhost:44308/files/{username}/{filename}
+HTTPType: DELETE
+Request: - 
+Responses:
+    1. 200-success: Backend response code
+    2. 404-not found: {filename}
+    
+6.
+Service: PostUserFile
+URL: https://localhost:44308/files/{username}
+HTTPType: POST
+Request: form-data:{file:{file blob}
+Responses:
+    1. 200-success: {filename}

@@ -15,17 +15,17 @@ BackEnd API execute request processing and have access to Database for user auth
 - Microsoft Azure Storage Emulator v5.10
 
 Place `secrets.json` under UserSercrets folder:
-```
+```text
 C:\Users\<user>\AppData\Roaming\Microsoft\UserSecrets\<app_id>
 ```
 
 Initialize MongoDB with project data folder:
-```
-% mongod --dbpath <path_to_folder>\azure-design-patterns\BackEnd\database\UsersData
+```shell
+$ mongod --dbpath <path_to_folder>\azure-design-patterns\BackEnd\database\UsersData
 ```
 
 To generate users execute the following commands in MongoDB:
-```
+```C#
 db.Users.insertMany(
     [
         {'FirstName':'','LastName':'','Email':'','Username':'gatekeeper','Password':'gatekeeper'},
